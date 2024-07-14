@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/InstrumentsCard.css";
+import "../InstrumentsCard/InstrumentsCard.css";
 
 function InstrumentsCard(props) {
   const { image, name, description } = props;
