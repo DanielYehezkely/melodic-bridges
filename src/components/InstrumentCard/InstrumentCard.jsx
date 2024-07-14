@@ -1,8 +1,12 @@
-// InstrumentCard.js
 import React from "react";
 import "./InstrumentCard.css";
+import { useNavigate } from "react-router-dom";
 
 const InstrumentCard = ({ instrument }) => {
+  const navigate = useNavigate();
+  const Back = () => {
+    navigate("/app");
+  };
   return (
     <div className="instrument-card-main-container">
       <div className="instrument-card">
@@ -26,7 +30,9 @@ const InstrumentCard = ({ instrument }) => {
             <strong>Created At:</strong>{" "}
             {new Date(instrument.createdAt).toLocaleDateString()}
           </p>
-          <button className="learn-more-button">Learn More</button>
+          <button className="learn-more-button" onClick={Back}>
+            Back
+          </button>
         </div>
       </div>
     </div>
