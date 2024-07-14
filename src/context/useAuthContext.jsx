@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   onAuthStateChanged as firebaseOnAuthStateChanged,
+  signOut as firebaseSignOut
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../config/firebaseConfig";
@@ -71,12 +72,27 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+   const handleLogout = async () => {
+     setLoading(true);
+     setError(null);
+     try {
+       await firebaseSignOut(auth);
+       setUser(null);
+     } catch (error) {
+       setError(error.message);
+       console.error("Error logging out:", error.message);
+     } finally {
+       setLoading(false);
+     }
+   };
+
   return (
     <AuthContext.Provider
       value={{
         user,
         loginWithEmail: handleLoginWithEmail,
         signUpWithEmail: handleSignUpWithEmail,
+        logout: handleLogout,
         loading,
         error,
       }}
