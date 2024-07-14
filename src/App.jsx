@@ -43,7 +43,7 @@ function App() {
           element: <SignUpPage />,
         },
         {
-          path: "instrumentPage",
+          path: ":instrumentId",
           element: <InstrumentPage />,
         },
       ],
