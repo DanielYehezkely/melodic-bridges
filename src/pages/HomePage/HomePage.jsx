@@ -1,43 +1,37 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getInstruments } from "../../services/firebase/instrumentsService";
- import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const HomePage = () => {
-const [instruments, setInstruments] = useState([]);
-const [currentIndex, setCurrentIndex] = useState(0);
-const navigate = useNavigate();
+  const [instruments, setInstruments] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-useEffect(() => {
-  const fetchInstruments = async () => {
-    try {
-      const instrumentList = await getInstruments();
-      const shuffledInstruments = instrumentList.sort(
-        () => 0.4 - Math.random()
-      );
-      setInstruments(shuffledInstruments.slice(0, 4));
-      console.log(instrumentList);
-    } catch (error) {
-      console.error("Failed to fetch Instruments:", error);
-    }
-  };
-  fetchInstruments();
-}, []);
+  useEffect(() => {
+    const fetchInstruments = async () => {
+      try {
+        const instrumentList = await getInstruments();
+        setInstruments(instrumentList);
+      } catch (error) {
+        console.error("Failed to fetch Instruments:", error);
+      }
+    };
 
-const nextSlide = () => {
-  setCurrentIndex((prevIndex) => (prevIndex + 1) % instruments.length);
-};
+    fetchInstruments();
+  }, []);
 
-const prevSlide = () => {
-  setCurrentIndex(
-    (prevIndex) => (prevIndex - 1 + instruments.length) % instruments.length
-  );
-};
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % instruments.length);
+    }, 2500);
 
-if (instruments.length === 0) {
-  return <p>Loading...</p>;
-}
+    return () => clearInterval(interval);
+  }, [instruments.length]);
+
+  if (instruments.length === 0) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="bg-orange-50 p-10 relative h-screen flex flex-col items-center gap-10">
@@ -59,9 +53,6 @@ if (instruments.length === 0) {
       </p>
 
       <section className="relative flex items-center justify-center w-2/3 mx-auto">
-        <button onClick={prevSlide} className="absolute left-5 z-10">
-          <FiChevronLeft size={40} />
-        </button>
         <div className="flex items-center justify-center w-full overflow-hidden">
           <div
             className="flex w-full"
@@ -82,9 +73,6 @@ if (instruments.length === 0) {
             ))}
           </div>
         </div>
-        <button onClick={nextSlide} className="absolute right-5 z-10">
-          <FiChevronRight size={40} />
-        </button>
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {instruments.map((_, index) => (
             <div
@@ -92,7 +80,7 @@ if (instruments.length === 0) {
               className={`w-3 h-3 rounded-full cursor-pointer ${
                 index === currentIndex ? "bg-white" : "bg-gray-500"
               }`}
-              onClick={() => goToSlide(index)}
+              onClick={() => setCurrentIndex(index)}
             />
           ))}
         </div>
