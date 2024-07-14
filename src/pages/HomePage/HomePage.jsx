@@ -46,6 +46,7 @@ const HomePage = () => {
           width: "100vw",
           height: "100vh",
           filter: "blur(5px)",
+          transition: "1s ease-in-out",
         }}
       >
         <div className="absolute inset-0 bg-black opacity-80"></div>
