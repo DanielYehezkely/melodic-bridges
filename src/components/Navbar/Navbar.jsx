@@ -91,7 +91,11 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/app/login"
-                    className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                    className={`block md:inline-block p-2 ${
+                      isActive("/app/login")
+                        ? "border-b-2 border-red-700 text-white"
+                        : "text-white hover:border-b-2 hover:border-red-700"
+                    }`}
                   >
                     Login
                   </Link>
@@ -99,7 +103,11 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/app/signUp"
-                    className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                    className={`block md:inline-block p-2 ${
+                      isActive("/app/signUp")
+                        ? "border-b-2 border-red-700 text-white"
+                        : "text-white hover:border-b-2 hover:border-red-700"
+                    }`}
                   >
                     Sign Up
                   </Link>
