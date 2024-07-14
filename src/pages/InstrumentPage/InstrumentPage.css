@@ -1,6 +1,18 @@
-.instruments-page {
+.instrument-page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #1c1c1c;
+}
+
+.instrument-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  width: 100%;
+  background-color: #1c1c1c;
 }
