@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getInstruments } from "../../services/firebase/instrumentsService";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { PiMusicNotesFill } from "react-icons/pi";
 
 const HomePage = () => {
   const [instruments, setInstruments] = useState([]);
@@ -34,58 +34,67 @@ const HomePage = () => {
   }
 
   return (
-    <div className="bg-orange-50 p-10 relative h-screen flex flex-col items-center gap-10">
-      <h1 className="text-center p-5 text-2xl font-bold">
-        Welcome To Melodic Bridges
-      </h1>
-      <p className="text-center w-1/2 leading-10 font-semibold text-xl">
-        Welcome to our website, where the rich tapestry of Arabic and Hebrew
-        music comes alive through the instruments that bind these cultures
-        together. Discover the soulful sounds and the shared musical heritage of
-        these two traditions. Here, you'll find a curated selection of
-        instruments that are commonly used in both Arabic and Hebrew songs.
-        Explore the stories behind these instruments, see which songs feature
-        them, and immerse yourself in the beautiful blend of melodies and
-        rhythms. Whether you're a music enthusiast or just curious about these
-        cultures, our platform offers a unique journey through the shared
-        musical landscape. Dive in and explore the instruments that create the
-        sounds you love.
-      </p>
+    <div className="relative h-screen">
+      {/* Background Carousel */}
+      <div
+        className="absolute inset-0 bg-cover bg-center z-0"
+        style={{
+          backgroundImage: `url(${instruments[currentIndex].instrumentImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          width: "100vw",
+          height: "100vh",
+          filter: "blur(5px)",
+        }}
+      >
+        <div className="absolute inset-0 bg-black opacity-80"></div>
+      </div>
 
-      <section className="relative w-full max-w-5xl mx-auto">
-        <div
-          className="relative w-full h-72 bg-cover bg-center rounded-lg shadow-lg"
-          style={{
-            backgroundImage: `url(${instruments[currentIndex].instrumentImage})`,
-          }}
-        >
-          <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h2 className="text-white text-2xl font-bold">
-              {instruments[currentIndex].name}
-            </h2>
-          </div>
+      <div className="relative z-10 h-full flex flex-col justify-center items-center text-white">
+        {/* Welcome Header */}
+        <h1 className="text-center p-5 text-3xl font-bold flex gap-3 mb-5">
+          <span className="mt-1 text-3xl">
+            <PiMusicNotesFill />
+          </span>
+          Welcome To Melodic Bridges
+          <span className="mt-1 text-3xl">
+            <PiMusicNotesFill />
+          </span>
+        </h1>
+
+        {/* Introduction Text */}
+        <div className="flex flex-col text-center w-1/2 leading-[3rem] font-semibold text-2xl gap-7">
+          <p>
+            Welcome to our website, where the rich tapestry of Arabic and Hebrew
+            music comes alive through the instruments that bind these cultures
+            together. Discover the soulful sounds and the shared musical
+            heritage of these two traditions.
+          </p>
+          <p>
+            Here, you'll find a curated selection of instruments that are
+            commonly used in both Arabic and Hebrew songs. Explore the stories
+            behind these instruments, see which songs feature them, and immerse
+            yourself in the beautiful blend of melodies and rhythms.
+          </p>
+          <p>
+            Whether you're a music enthusiast or just curious about these
+            cultures, our platform offers a unique journey through the shared
+            musical landscape. Dive in and explore the instruments that create
+            the sounds you love.
+          </p>
         </div>
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          {instruments.map((_, index) => (
-            <div
-              key={index}
-              className={`w-3 h-3 rounded-full cursor-pointer ${
-                index === currentIndex ? "bg-white" : "bg-gray-500"
-              }`}
-              onClick={() => setCurrentIndex(index)}
-            />
-          ))}
-        </div>
-      </section>
-      <button>
-        <Link
-          to="/app"
-          className="bg-teal-950 text-white p-5 rounded-[20px] text-lg cursor-pointer hover:bg-teal-800"
-        >
-          Explore Our Instruments
-        </Link>
-      </button>
+
+        {/* Explore Button */}
+        <button className="mt-10">
+          <Link
+            to="/app"
+            className="bg-[#1F2937] text-white px-8 py-4 rounded-lg text-xl cursor-pointer hover:bg-[#2d3b4f]"
+          >
+            Explore Our Instruments
+          </Link>
+        </button>
+      </div>
     </div>
   );
 };
