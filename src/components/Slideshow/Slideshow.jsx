@@ -9,7 +9,8 @@ const divStyle = {
   backgroundSize: "cover",
   height: "150px",
   marginTop: "20px",
-  opacity: "0.8",
+  opacity: "0.7",
+  
 };
 const musicWord = {
   padding: "20px",

@@ -14,9 +14,7 @@ body{
     height: 350px;
     box-shadow: rgb(119, 136, 153) 10px 10px 10px ; 
     background-color: rgb(241, 244, 249); 
-    border-radius: 10px;
-    
- 
+    border-radius: 10px; 
 }
  .card-container img{
     width: 280px;
@@ -30,7 +28,7 @@ body{
     position: absolute;
     top: 320px;
     font-size: 15px;
-    margin-left: 2px;
+    margin-left: 1rem;
     z-index: 1;
 }
 
@@ -44,7 +42,7 @@ body{
     font-size: 25px;
     top: 280px;
     z-index: 1;
-    
+    margin-left: 1rem;
 
     
 }
