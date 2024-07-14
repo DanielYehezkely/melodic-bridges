@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import {
-  clearToken,
-  extractTokenFromHash,
-  fetchPlaylist,
-  getStoredToken,
-  redirectToLogin,
-} from "../../services/spotify/spotifyService";
+// import {
+//   clearToken,
+//   extractTokenFromHash,
+//   fetchPlaylist,
+//   getStoredToken,
+//   redirectToLogin,
+// } from "../../services/spotify/spotifyService";
 
 const playlistId = "7Fwk585l5dPB7dxHzRqzAO";
 
@@ -14,36 +14,36 @@ const FavoritesPage = () => {
   const [token, setToken] = useState("");
   const [playlistData, setPlaylistData] = useState(null);
 
-  useEffect(() => {
-    const hash = window.location.hash;
-    let storedToken = getStoredToken();
+  // useEffect(() => {
+  //   const hash = window.location.hash;
+  //   let storedToken = getStoredToken();
 
-    if (!storedToken && hash) {
-      storedToken = extractTokenFromHash(hash);
-      window.location.hash = "";
-    }
+  //   if (!storedToken && hash) {
+  //     storedToken = extractTokenFromHash(hash);
+  //     window.location.hash = "";
+  //   }
 
-    if (storedToken) {
-      console.log("Access Token:", storedToken);
-      setToken(storedToken);
-      fetchPlaylist(storedToken, playlistId)
-        .then((data) => {
-          console.log("Playlist Data:", data);
-          setPlaylistData(data);
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 401) {
-            clearToken();
-            setToken("");
-            setPlaylistData(null);
-            redirectToLogin();
-          }
-        });
-    } else {
-      console.log("No Access Token Found");
-      redirectToLogin();
-    }
-  }, []);
+  //   if (storedToken) {
+  //     console.log("Access Token:", storedToken);
+  //     setToken(storedToken);
+  //     fetchPlaylist(storedToken, playlistId)
+  //       .then((data) => {
+  //         console.log("Playlist Data:", data);
+  //         setPlaylistData(data);
+  //       })
+  //       .catch((error) => {
+  //         if (error.response && error.response.status === 401) {
+  //           clearToken();
+  //           setToken("");
+  //           setPlaylistData(null);
+  //           redirectToLogin();
+  //         }
+  //       });
+  //   } else {
+  //     console.log("No Access Token Found");
+  //     redirectToLogin();
+  //   }
+  // }, []);
 
   return (
     <div className="App">
