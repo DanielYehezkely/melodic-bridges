@@ -8,30 +8,33 @@ const divStyle = {
   justifyContent: "center",
   backgroundSize: "cover",
   height: "150px",
-  marginTop:"20px",
-  opacity:"0.5"
-  
+  marginTop: "20px",
+  opacity: "0.8",
+};
+const musicWord = {
+  padding: "20px",
+  margin: "20px",
+  color: "white",
 };
 
 const music = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space around",
-  fontSize:"20px"
- 
+  fontSize: "20px",
 };
 const slideImages = [
   {
-    url: "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    
+    url: "https://images.unsplash.com/photo-1524779709304-40b5a3560c60?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzAyfHxtdXNpYyUyMGFyYWJ8ZW58MHwwfDB8fHww",
   },
   {
-    url: "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80",
-    
+    url: "https://images.unsplash.com/photo-1502710655568-ee441b74b0b9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjg2fHxtdXNpYyUyMGFyYWJ8ZW58MHwwfDB8fHww",
   },
   {
-    url: "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-    
+    url: "https://images.unsplash.com/photo-1506271955088-88204c99e99a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTcyfHxtdXNpYyUyMGFyYWJ8ZW58MHwwfDB8fHww",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1514190226263-0a4456a291f2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzcyfHxtdXNpYyUyMGFyYWJ8ZW58MHwwfDB8fHww",
   },
 ];
 
@@ -44,13 +47,19 @@ const Slideshow = () => {
             <div
               style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}
             >
-              <div style={music} >
-                <p className="music1">مزيكا</p>
-                <p className="music2">מוסיקה</p>
-                <p className="music3">موسيقى</p>
-                <p className="music4">Music</p>
-                <p className="music5">מזיקא</p>
-                <p className="music6">Musica</p>
+              <div style={music}>
+                <p style={musicWord}>مزيكا</p>
+                <p style={musicWord}>מוסיקה</p>
+                <p style={musicWord}>نغم</p>
+                <p style={musicWord}>Music</p>
+                <p style={musicWord}>מזיקא</p>
+                <p style={musicWord}>Mmino</p>
+                <p style={musicWord}>عود</p>
+                <p style={musicWord}>דרבוקה</p>
+                <p style={musicWord}>كمان</p>
+                <p style={musicWord}>לחן</p>
+                <p style={musicWord}>موسيقى</p>
+                <p style={musicWord}>音乐</p>
               </div>
             </div>
           </div>

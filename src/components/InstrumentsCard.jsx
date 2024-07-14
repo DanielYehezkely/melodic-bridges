@@ -1,22 +1,18 @@
-import React from 'react'
+import React from "react";
 import "../styles/InstrumentsCard.css";
 
 function InstrumentsCard(props) {
-    const { image, name, description } = props;
+  const { image, name, description } = props;
   return (
     <>
       <div className="card-container">
         <img src={image} alt="user-photo" />
-        <h2>Name</h2>
-        <p>
-          {" "}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-          magni?
-        </p>
+        <h2>{name}</h2>
+        <p>{description}</p>
         <div className="line"></div>
       </div>
     </>
   );
 }
 
-export default InstrumentsCard
+export default InstrumentsCard;
