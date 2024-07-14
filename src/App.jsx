@@ -3,6 +3,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { FavoritesPage, HomePage, InstrumentPage, InstrumentsPage, LoginPage, NotFoundPage, SignUpPage } from "./pages";
 import NavbarLayout from "./Layouts/NavbarLayout";
+import { AuthProvider } from "./context/useAuthContext";
 
 
 function App() {
@@ -44,7 +45,10 @@ function App() {
   ]);
 
   return (
-    <RouterProvider router={router} />
+     <AuthProvider>
+
+       <RouterProvider router={router} />
+     </AuthProvider>
   );
 }
 
