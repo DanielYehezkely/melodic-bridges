@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import "../styles/InstrumentsCard.css";
 
 function InstrumentsCard(props) {
-    const { image, name, description } = props;
+  const { image, name, description } = props;
   return (
     <>
       <div className="card-container">
@@ -19,4 +19,4 @@ function InstrumentsCard(props) {
   );
 }
 
-export default InstrumentsCard
+export default InstrumentsCard;

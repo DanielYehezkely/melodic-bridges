@@ -1,9 +1,16 @@
 import React from "react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { FavoritesPage, HomePage, InstrumentPage, InstrumentsPage, LoginPage, NotFoundPage, SignUpPage } from "./pages";
+import {
+  FavoritesPage,
+  HomePage,
+  InstrumentPage,
+  InstrumentsPage,
+  LoginPage,
+  NotFoundPage,
+  SignUpPage,
+} from "./pages";
 import NavbarLayout from "./Layouts/NavbarLayout";
-
 
 function App() {
   const router = createBrowserRouter([
@@ -12,12 +19,12 @@ function App() {
       element: <HomePage />,
     },
     {
-      path: '/app',
+      path: "/app",
       element: <NavbarLayout />,
       children: [
         {
           index: true,
-          element: <InstrumentsPage/>
+          element: <InstrumentsPage />,
         },
         {
           path: "favorites",
@@ -34,18 +41,20 @@ function App() {
         {
           path: "signUp",
           element: <SignUpPage />,
-        }
-      ]
+        },
+        {
+          path: "instrumentPage",
+          element: <InstrumentPage />,
+        },
+      ],
     },
     {
-      path: '*',
-      element: <NotFoundPage />
-    }
+      path: "*",
+      element: <NotFoundPage />,
+    },
   ]);
 
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

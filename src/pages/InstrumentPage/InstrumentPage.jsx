@@ -6,7 +6,8 @@ import useInstruments from "../../hooks/useInstruments";
 import "./InstrumentPage.css";
 
 const InstrumentPage = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
+  const id = "5IocFBTy4Zco4dC0d5tBOs";
   const { instruments, loading, error } = useInstruments();
   const instrument = instruments.find((inst) => inst.id === id);
 
@@ -25,7 +26,7 @@ const InstrumentPage = () => {
   return (
     <div className="instrument-page">
       <InstrumentCard instrument={instrument} />
-      <InstrumentGallery images={instrument.images} />
+      <InstrumentGallery instrument={instrument} />
     </div>
   );
 };
