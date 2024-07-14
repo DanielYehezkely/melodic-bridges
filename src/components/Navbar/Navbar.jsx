@@ -11,9 +11,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white text-xl font-bold">Melodic Bridges</div>
+    <nav className="bg-gray-800 p-5 h-[4rem] ">
+      <div className="container mt-3 mx-auto flex justify-between items-center">
+        <div className="text-white text-2xl font-bold ">Melodic Bridges</div>
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -36,25 +36,31 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className={` md:flex md:items-center md:w-auto ${
+          className={` md:flex md:items-center md:w-auto text-xl ${
             isOpen ? "block" : "hidden"
           }`}
         >
-          <ul className="md:flex md:space-x-4">
+          <ul className="md:flex md:space-x-4 ">
             <li>
-              <Link to="/" className="block md:inline-block text-white p-2">
+              <Link
+                to="/"
+                className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/app" className="block md:inline-block text-white p-2">
+              <Link
+                to="/app"
+                className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+              >
                 Instruments
               </Link>
             </li>
             <li>
               <Link
                 to="/app/favorites"
-                className="block md:inline-block text-white p-2"
+                className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
               >
                 My Playlist
               </Link>
@@ -63,7 +69,7 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={logout}
-                  className="rounded-md bg-red-600 px-4 py-2 sm:px-5 sm:py-2.5 text-sm font-medium text-white shadow hover:bg-red-500 transition-colors ease-in-out"
+                  className="rounded-md bg-red-600 px-4 py-2 sm:px-5 sm:py-2.5 text-lg font-medium text-white shadow hover:bg-red-500 transition-colors ease-in-out"
                   disabled={loading}
                 >
                   Logout
@@ -72,12 +78,18 @@ const Navbar = () => {
             ) : (
               <>
                 <li>
-                  <Link to="/app/login" className="hover:text-gray-300">
+                  <Link
+                    to="/app/login"
+                    className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                  >
                     Login
                   </Link>
                 </li>
                 <li>
-                  <Link to="/app/signUp" className="hover:text-gray-300">
+                  <Link
+                    to="/app/signUp"
+                    className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                  >
                     Sign Up
                   </Link>
                 </li>
