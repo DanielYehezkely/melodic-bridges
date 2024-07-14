@@ -1,0 +1,14 @@
+.youtube-player {
+  position: relative;
+  width: 100%;
+  height: 80px; /* Adjust height for audio controls only */
+  overflow: hidden;
+}
+
+.youtube-player iframe {
+  position: absolute;
+  top: -9999px; /* Move video out of view */
+  left: -9999px;
+  width: 100%;
+  height: 100%;
+}
