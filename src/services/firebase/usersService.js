@@ -22,3 +22,16 @@ export const updateUserData = async (userId, favoriteSongs) => {
         throw new Error("Failed to update recipes");
     }
 };
+
+export const addSongToFavorites = async (userId, songId, songTitle) => {
+    try {
+        const userData = await getUserData(userId);
+        const favoriteSongs = userData.favoriteSongs || [];
+        const newSong = { id: songId, title: songTitle };
+        favoriteSongs.push(newSong);
+        await updateUserData(userId, favoriteSongs);
+        return "Song added to favorites";
+    } catch (error) {
+        throw new Error("Failed to add song to favorites");
+    }
+};
