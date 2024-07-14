@@ -1,0 +1,41 @@
+
+.card-container{
+    position: relative;
+    margin-top: 40px;
+    width: 280px;
+    height: 350px;
+    box-shadow: rgb(119, 136, 153) 10px 10px 10px ; 
+    background-color: rgb(241, 244, 249); 
+ 
+}
+ .card-container img{
+    width: 280px;
+    height: 350px; 
+    position: absolute;
+}
+.card-container p{
+    color: rgb(243, 240, 240);
+    position: absolute;
+    top: 290px;
+    font-size: 15px;
+    margin-left: 2px;
+}
+
+.card-container h2{
+    width: 98%;
+    font-family:'Josefin Sans', sans-serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    margin:3px;
+    font-size: 25px;
+    top: 255px;
+    
+}
+.card-container .line{
+    position: absolute;
+    top: 280px;
+    width: 280px;
+    height: 70px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.609) 0%, rgba(253,187,45,0) 100%);
+}
