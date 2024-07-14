@@ -1,45 +1,64 @@
 import axios from 'axios';
 
-const clientId = '03ee5fc6fd8d41f2bbc50b8493734d95'; 
-const clientSecret = 'YOUR_SPOTIFY_CLIENT_SECRET'; 
-const tokenEndpoint = 'https://accounts.spotify.com/api/token'; 
+const clientId = '03ee5fc6fd8d41f2bbc50b8493734d95';
+const redirectUri = 'http://localhost:5174/';
+const authEndpoint = 'https://accounts.spotify.com/authorize';
+const scopes = [
+  'user-read-private',
+  'user-read-email',
+  'playlist-read-private',
+  'playlist-read-collaborative'
+];
 
-let accessToken = '';
-let tokenExpiryTime = 0;
-
-const getAccessToken = async () => {
-  if (accessToken && Date.now() < tokenExpiryTime) {
-    return accessToken;
+const getStoredToken = () => {
+  const token = window.localStorage.getItem('spotify_token');
+  const tokenExpiry = window.localStorage.getItem('spotify_token_expiry');
+  if (token && tokenExpiry && Date.now() > parseInt(tokenExpiry, 10)) {
+    window.localStorage.removeItem('spotify_token');
+    window.localStorage.removeItem('spotify_token_expiry');
+    return null;
   }
-
-  const response = await axios.post(
-    tokenEndpoint,
-    'grant_type=client_credentials',
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Basic ${btoa(`${clientId}:${clientSecret}`)}`
-      }
-    }
-  );
-
-  accessToken = response.data.access_token;
-  tokenExpiryTime = Date.now() + response.data.expires_in * 1000; 
-
-  return accessToken;
+  return token;
 };
 
-export const fetchPlaylist = async (playlistId) => {
+const extractTokenFromHash = (hash) => {
+  const tokenFromHash = hash.substring(1).split('&').find(elem => elem.startsWith('access_token')).split('=')[1];
+  const tokenExpiryFromHash = hash.substring(1).split('&').find(elem => elem.startsWith('expires_in')).split('=')[1];
+  window.localStorage.setItem('spotify_token', tokenFromHash);
+  window.localStorage.setItem('spotify_token_expiry', Date.now() + parseInt(tokenExpiryFromHash, 10) * 1000);
+  return tokenFromHash;
+};
+
+const clearToken = () => {
+  window.localStorage.removeItem('spotify_token');
+  window.localStorage.removeItem('spotify_token_expiry');
+};
+
+const fetchPlaylist = async (token, playlistId) => {
   try {
-    const token = await getAccessToken();
-    const response = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+    const { data } = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
-    return response.data;
+    return data;
   } catch (error) {
     console.error('Error fetching playlist:', error.response ? error.response.data : error.message);
+    if (error.response && error.response.status === 401) {
+      clearToken();
+    }
     throw error;
   }
+};
+
+const redirectToLogin = () => {
+  window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+};
+
+export {
+  getStoredToken,
+  extractTokenFromHash,
+  clearToken,
+  fetchPlaylist,
+  redirectToLogin
 };
