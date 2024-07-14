@@ -1,6 +1,6 @@
 import React from "react";
-import InstrumentsCard from "../../components/InstrumentsCard";
-import Slideshow from "../../components/Slideshow";
+import InstrumentsCard from "../../components/InstrumentsCard/InstrumentsCard";
+import Slideshow from "../../components/Slideshow/Slideshow";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getInstruments } from "../../services/firebase/instrumentsService";
