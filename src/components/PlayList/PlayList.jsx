@@ -5,7 +5,7 @@ const PlayList = ({ songs, onAdd, onRemove, isFavoritePage }) => {
   return (
     <div>
       <h1 class="flex items-center justify-center text-5xl font-bold text-gray-800 m-10 p-4">
-        My Playlists
+        My Playlist
       </h1>
       <ul class="flex flex-col items-center justify-center gap-4">
         {songs.map((song) => (

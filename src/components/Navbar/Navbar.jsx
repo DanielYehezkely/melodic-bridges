@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/useAuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {user, logout, loading,error} = useAuth()
+ const location = useLocation();
+
+ const isActive = (path) => location.pathname === path;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -52,7 +55,11 @@ const Navbar = () => {
             <li>
               <Link
                 to="/app"
-                className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                className={`block md:inline-block p-2 ${
+                  isActive("/app")
+                    ? "border-b-2 border-red-700 text-white"
+                    : "text-white hover:border-b-2 hover:border-red-700"
+                }`}
               >
                 Instruments
               </Link>
@@ -60,7 +67,11 @@ const Navbar = () => {
             <li>
               <Link
                 to="/app/favorites"
-                className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                className={`block md:inline-block p-2 ${
+                  isActive("/app/favorites")
+                    ? "border-b-2 border-red-700 text-white"
+                    : "text-white hover:border-b-2 hover:border-red-700"
+                }`}
               >
                 My Playlist
               </Link>
@@ -80,7 +91,11 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/app/login"
-                    className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                    className={`block md:inline-block p-2 ${
+                      isActive("/app/login")
+                        ? "border-b-2 border-red-700 text-white"
+                        : "text-white hover:border-b-2 hover:border-red-700"
+                    }`}
                   >
                     Login
                   </Link>
@@ -88,30 +103,17 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/app/signUp"
-                    className="block md:inline-block text-white p-2 hover:border-b-2 hover:border-red-700"
+                    className={`block md:inline-block p-2 ${
+                      isActive("/app/signUp")
+                        ? "border-b-2 border-red-700 text-white"
+                        : "text-white hover:border-b-2 hover:border-red-700"
+                    }`}
                   >
                     Sign Up
                   </Link>
                 </li>
               </>
             )}
-
-            {/* <li>
-              <Link
-                to="/app/login"
-                className="block md:inline-block text-white p-2"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/app/signUp"
-                className="block md:inline-block text-white p-2"
-              >
-                SignUp
-              </Link>
-            </li> */}
           </ul>
           {error && <p className="error-message">{error}</p>}
         </div>
