@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/useAuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {user, logout} = useAuth
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -58,6 +60,24 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
+              {user ? (
+                <>
+                  <button onClick={logout} className="hover:text-gray-300">
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/app/login" className="hover:text-gray-300">
+                    Login
+                  </Link>
+                  <Link to="/app/signUp" className="hover:text-gray-300">
+                    Sign Up
+                  </Link>
+                </>
+              )}
+            </li>
+            {/* <li>
               <Link
                 to="/app/login"
                 className="block md:inline-block text-white p-2"
@@ -72,7 +92,7 @@ const Navbar = () => {
               >
                 SignUp
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

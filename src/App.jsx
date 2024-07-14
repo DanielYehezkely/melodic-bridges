@@ -11,6 +11,7 @@ import {
   SignUpPage,
 } from "./pages";
 import NavbarLayout from "./Layouts/NavbarLayout";
+import { AuthProvider } from "./context/useAuthContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -31,7 +32,7 @@ function App() {
           element: <FavoritesPage />,
         },
         {
-          path: ":instrumentId",
+          path: "/app/:id",
           element: <InstrumentPage />,
         },
         {
@@ -54,7 +55,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

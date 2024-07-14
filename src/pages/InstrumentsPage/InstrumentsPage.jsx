@@ -44,7 +44,7 @@ const InstrumentsPage = () => {
       <div className="cards-container">
         <div>
           {instruments.map((item, index) => (
-            <div className="cardsDiv" key={index}>
+            <div className="cardsDiv" key={index} onClick={() => handleInstrumentClicked(item)}>
               <InstrumentsCard
                 name={item.name}
                 image={item.instrumentImage}
