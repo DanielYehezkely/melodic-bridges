@@ -25,7 +25,7 @@ function App() {
           element: <FavoritesPage />,
         },
         {
-          path: ":instrumentId",
+          path: "/app/:id",
           element: <InstrumentPage />,
         },
         {

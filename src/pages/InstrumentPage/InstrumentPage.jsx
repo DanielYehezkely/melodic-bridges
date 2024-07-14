@@ -8,8 +8,7 @@ import "./InstrumentPage.css";
 const InstrumentPage = () => {
   const { id } = useParams();
   const { instruments, loading, error } = useInstruments();
-  const instrument = instruments.find((inst) => inst.id === id);
-
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -17,6 +16,7 @@ const InstrumentPage = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+  const instrument = instruments.find((inst) => inst.id === id);
 
   if (!instrument) {
     return <div>Instrument not found</div>;
