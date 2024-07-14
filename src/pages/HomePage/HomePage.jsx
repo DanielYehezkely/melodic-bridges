@@ -52,25 +52,18 @@ const HomePage = () => {
         sounds you love.
       </p>
 
-      <section className="relative flex items-center justify-center w-2/3 mx-auto">
-        <div className="flex items-center justify-center w-full overflow-hidden">
-          <div
-            className="flex w-full"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-              transition: "transform 0.5s ease",
-            }}
-          >
-            {instruments.map((instrument, index) => (
-              <div key={index} className="w-full flex-shrink-0 text-center">
-                <img
-                  src={instrument.instrumentImage}
-                  alt={instrument.name}
-                  className="w-1/3 mx-auto"
-                />
-                <h2 className="text-xl font-bold">{instrument.name}</h2>
-              </div>
-            ))}
+      <section className="relative w-full max-w-5xl mx-auto">
+        <div
+          className="relative w-full h-72 bg-cover bg-center rounded-lg shadow-lg"
+          style={{
+            backgroundImage: `url(${instruments[currentIndex].instrumentImage})`,
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-70 rounded-lg"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h2 className="text-white text-2xl font-bold">
+              {instruments[currentIndex].name}
+            </h2>
           </div>
         </div>
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
@@ -85,7 +78,6 @@ const HomePage = () => {
           ))}
         </div>
       </section>
-
       <button>
         <Link
           to="/app"

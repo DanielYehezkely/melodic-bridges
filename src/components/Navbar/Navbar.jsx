@@ -4,7 +4,7 @@ import { useAuth } from "../../context/useAuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {user, logout} = useAuth
+  const {user, logout, loading,error} = useAuth()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -59,24 +59,31 @@ const Navbar = () => {
                 My Playlist
               </Link>
             </li>
-            <li>
-              {user ? (
-                <>
-                  <button onClick={logout} className="hover:text-gray-300">
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
+            {user ? (
+              <li>
+                <button
+                  onClick={logout}
+                  className="rounded-md bg-red-600 px-4 py-2 sm:px-5 sm:py-2.5 text-sm font-medium text-white shadow hover:bg-red-500 transition-colors ease-in-out"
+                  disabled={loading}
+                >
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <>
+                <li>
                   <Link to="/app/login" className="hover:text-gray-300">
                     Login
                   </Link>
+                </li>
+                <li>
                   <Link to="/app/signUp" className="hover:text-gray-300">
                     Sign Up
                   </Link>
-                </>
-              )}
-            </li>
+                </li>
+              </>
+            )}
+
             {/* <li>
               <Link
                 to="/app/login"
@@ -94,6 +101,7 @@ const Navbar = () => {
               </Link>
             </li> */}
           </ul>
+          {error && <p className="error-message">{error}</p>}
         </div>
       </div>
     </nav>
