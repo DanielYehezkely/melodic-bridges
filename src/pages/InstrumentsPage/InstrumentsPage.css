@@ -1,0 +1,15 @@
+.cards-container{
+   position: absolute;
+   left: 140px;
+  } 
+  
+.cardsDiv{
+  display: inline-block;
+  margin: 30px;
+  padding: 35px;
+}
+
+.loading{
+    margin: 10px auto;
+}
+
