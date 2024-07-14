@@ -6,10 +6,9 @@ import useInstruments from "../../hooks/useInstruments";
 import "./InstrumentPage.css";
 
 const InstrumentPage = () => {
-  // const { id } = useParams();
-  const id = "5IocFBTy4Zco4dC0d5tBOs";
+  const { id } = useParams();
   const { instruments, loading, error } = useInstruments();
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }
