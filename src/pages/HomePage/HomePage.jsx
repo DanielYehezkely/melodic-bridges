@@ -20,8 +20,13 @@ const HomePage = () => {
         musical landscape. Dive in and explore the instruments that create the
         sounds you love.
       </p>
-      <button className="bg-teal-950 text-white p-5 rounded-[20px] text-lg cursor-pointer hover:bg-teal-800">
-        <Link to="/app">Explore Our Instruments</Link>
+      <button>
+        <Link
+          to="/app"
+          className="bg-teal-950 text-white p-5 rounded-[20px] text-lg cursor-pointer hover:bg-teal-800"
+        >
+          Explore Our Instruments
+        </Link>
       </button>
     </div>
   );
