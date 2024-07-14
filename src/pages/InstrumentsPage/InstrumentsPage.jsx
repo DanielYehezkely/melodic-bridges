@@ -39,8 +39,9 @@ const InstrumentsPage = () => {
   return (
     <>
       <div className="slide">
-      <Slideshow /></div>
-      <div className="container">
+        <Slideshow/>
+    </div>
+      <div className="cards-container">
         <div>
           {" "}
           {collection.map((item) => (
