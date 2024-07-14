@@ -1,58 +1,61 @@
 import React from "react";
-import "./InstrumentsPage.css";
 import InstrumentsCard from "../../components/InstrumentsCard";
 import Slideshow from "../../components/Slideshow";
-
-
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getInstruments } from "../../services/firebase/instrumentsService";
+import "./InstrumentsPage.css";
 
 const InstrumentsPage = () => {
-  const collection = [
-    {
-      imgURL:
-        "https://images.unsplash.com/photo-1683632420809-72c1738aade3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fG11c2ljYWwlMjBpbnN0cnVtZW50fGVufDB8fDB8fHww",
-    },
-    {
-      imgURL:
-        "https://images.unsplash.com/photo-1683632420809-72c1738aade3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fG11c2ljYWwlMjBpbnN0cnVtZW50fGVufDB8fDB8fHww",
-    },
-    {
-      imgURL:
-        "https://images.unsplash.com/photo-1683632420809-72c1738aade3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fG11c2ljYWwlMjBpbnN0cnVtZW50fGVufDB8fDB8fHww",
-    },
-    {
-      imgURL:
-        "https://images.unsplash.com/photo-1683632420809-72c1738aade3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fG11c2ljYWwlMjBpbnN0cnVtZW50fGVufDB8fDB8fHww",
-    },
-    {
-      imgURL:
-        "https://images.unsplash.com/photo-1683632420809-72c1738aade3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fG11c2ljYWwlMjBpbnN0cnVtZW50fGVufDB8fDB8fHww",
-    },
-    {
-      imgURL:
-        "https://images.unsplash.com/photo-1683632420809-72c1738aade3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fG11c2ljYWwlMjBpbnN0cnVtZW50fGVufDB8fDB8fHww",
-    },
-    {
-      imgURL:
-        "https://images.unsplash.com/photo-1683632420809-72c1738aade3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODJ8fG11c2ljYWwlMjBpbnN0cnVtZW50fGVufDB8fDB8fHww",
-    },
-  ];
+  const [instruments, setInstruments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchInstruments = async () => {
+      try {
+        const instrumentsData = await getInstruments();
+        setInstruments(instrumentsData || []);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+    fetchInstruments();
+  }, []);
+
+  const handleInstrumentClicked = (instrument) => {
+    navigate(`/app/${instrument.id}`);
+  };
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   return (
     <>
       <div className="slide">
-        <Slideshow/>
-    </div>
+        <Slideshow />
+      </div>
       <div className="cards-container">
         <div>
-          {" "}
-          {collection.map((item) => (
-            <div className="cardsDiv">
-              <InstrumentsCard image={item.imgURL} />
+          {instruments.map((item, index) => (
+            <div className="cardsDiv" key={index}>
+              <InstrumentsCard
+                name={item.name}
+                image={item.instrumentImage}
+                description={item.createdAt}
+              />
             </div>
           ))}
         </div>
       </div>
     </>
   );
-}
+};
 
 export default InstrumentsPage;

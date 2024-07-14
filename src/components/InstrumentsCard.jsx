@@ -7,12 +7,8 @@ function InstrumentsCard(props) {
     <>
       <div className="card-container">
         <img src={image} alt="user-photo" />
-        <h2>Name</h2>
-        <p>
-          {" "}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-          magni?
-        </p>
+        <h2>{name}</h2>
+        <p>{description}</p>
         <div className="line"></div>
       </div>
     </>
