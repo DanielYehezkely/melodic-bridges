@@ -1,5 +1,6 @@
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from './firebaseConfig';
+import { db } from '../../config/firebaseConfig';
+import { uploadImage } from './storageService';
 
 const INSTRUMENTS_COLLECTION = 'instruments';
 const GET_INSTRUMENTS_ERROR_MSG = 'Error getting instruments';

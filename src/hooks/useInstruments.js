@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { getInstruments } from './firestoreService';
+import { getInstruments } from '../services/firebase/instrumentsService';
 
 const useInstruments = () => {
-  
+
   const [instruments, setInstruments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
