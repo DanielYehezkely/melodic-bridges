@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getInstruments } from "../../services/firebase/instrumentsService";
 import { PiMusicNotesFill } from "react-icons/pi";
+import Loader from "../../components/Loader/Loader";
 
 const HomePage = () => {
   const [instruments, setInstruments] = useState([]);
@@ -30,7 +31,7 @@ const HomePage = () => {
   }, [instruments.length]);
 
   if (instruments.length === 0) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
 
   return (
