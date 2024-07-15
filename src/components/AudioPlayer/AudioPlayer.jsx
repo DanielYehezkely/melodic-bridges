@@ -1,4 +1,3 @@
-// src/AudioPlayer.js
 import React, { useEffect, useRef } from "react";
 import "./AudioPlayer.css";
 
@@ -12,14 +11,10 @@ const AudioPlayer = ({ videoId }) => {
         width: "0",
         videoId: videoId,
         playerVars: {
-          autoplay: 0, // Disable autoplay
+          autoplay: 0, 
         },
       });
     };
-
-    // const onPlayerReady = (event) => {
-    //   event.target.playVideo();
-    // };
 
     if (!window.YT) {
       window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;

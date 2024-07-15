@@ -11,7 +11,7 @@ const PlayList = ({ songs, onAdd, onRemove, isFavoritePage }) => {
         {songs.map((song) => (
           <li
             key={song.id}
-            class="flex items-center justify-center gap-10 p-4 rounded-lg shadow-lg"
+            class="flex items-center justify-center gap-10 p-4 rounded-lg shadow-lg [max-width: 100%]"
           >
             <div class="flex flex-col  items-center justify-center">
               <h2 class="text-2xl font-bold text-gray-800 mb-4">
