@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/useAuthContext";
+import logo from "../../../public/assets/images/logo.png"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,10 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 p-5 h-[4rem] ">
       <div className="container mt-3 mx-auto flex justify-between items-center">
-        <div className="text-white text-2xl font-bold ">Melodic Bridges</div>
+        <div className=" -mt-7 ">
+          
+          <img src={logo} alt="Logo" className=" w-[20rem] " />
+        </div>
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -39,11 +43,11 @@ const Navbar = () => {
           </button>
         </div>
         <div
-          className={` md:flex md:items-center md:w-auto text-xl ${
+          className={` md:flex md:items-center md:w-auto text-xl${
             isOpen ? "block" : "hidden"
           }`}
         >
-          <ul className="md:flex md:space-x-4 ">
+          <ul className="md:flex md:space-x-4 text-xl ">
             <li>
               <Link
                 to="/"
@@ -80,7 +84,7 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={logout}
-                  className="rounded-md bg-red-600 px-4 py-2 sm:px-5 sm:py-2.5 text-lg font-medium text-white shadow hover:bg-red-500 transition-colors ease-in-out"
+                  className="rounded-md bg-red-600 px-4 py-2 sm:px-5 sm:py-2.5 text-xl font-medium text-white shadow hover:bg-red-500 transition-colors ease-in-out"
                   disabled={loading}
                 >
                   Logout
