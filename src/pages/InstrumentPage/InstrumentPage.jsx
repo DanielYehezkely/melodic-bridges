@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useAuth } from '../../context/useAuthContext'
 import InstrumentCard from "../../components/InstrumentCard/InstrumentCard";
 import InstrumentGallery from "../../components/InsrumentGallery/InstrumentGallery";
 import useInstruments from "../../hooks/useInstruments";
@@ -11,7 +10,6 @@ import { addSongToFavorites } from "../../services/firebase/usersService";
 const InstrumentPage = () => {
   const { id } = useParams();
   const { instruments, loading, error } = useInstruments();
-  const { user } = useAuth()
 
   if (loading) {
     return <div>Loading...</div>;
@@ -32,7 +30,6 @@ const InstrumentPage = () => {
       <InstrumentsPlaylist
         playlist={instrument.playlist}
         addSongToFavorites={addSongToFavorites}
-        userId={user.id} 
       />
       <InstrumentGallery instrument={instrument} />
     </div>
