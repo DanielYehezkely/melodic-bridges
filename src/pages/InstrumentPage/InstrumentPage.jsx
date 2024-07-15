@@ -29,12 +29,12 @@ const InstrumentPage = () => {
   return (
     <div className="instrument-page">
       <InstrumentCard instrument={instrument} />
-      <InstrumentGallery instrument={instrument} />
       <InstrumentsPlaylist
         playlist={instrument.playlist}
         addSongToFavorites={addSongToFavorites}
-        userId={user.id} // Replace with actual user ID
+        userId={user.id} 
       />
+      <InstrumentGallery instrument={instrument} />
     </div>
   );
 };
