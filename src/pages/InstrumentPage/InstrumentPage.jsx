@@ -6,13 +6,14 @@ import useInstruments from "../../hooks/useInstruments";
 import InstrumentsPlaylist from "../../components/InstrumentsPlaylist/InstrumentsPlaylist";
 import "./InstrumentPage.css";
 import { addSongToFavorites } from "../../services/firebase/usersService";
+import { Loader } from "../../components";
 
 const InstrumentPage = () => {
   const { id } = useParams();
   const { instruments, loading, error } = useInstruments();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   if (error) {

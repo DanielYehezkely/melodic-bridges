@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getInstruments } from "../../services/firebase/instrumentsService";
 import "./InstrumentsPage.css";
+import { Loader } from "../../components";
 
 const InstrumentsPage = () => {
   const [instruments, setInstruments] = useState([]);
@@ -30,7 +31,7 @@ const InstrumentsPage = () => {
     navigate(`/app/${instrument.id}`);
   };
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
   if (error) {
     return <p>Error: {error}</p>;
