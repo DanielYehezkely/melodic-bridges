@@ -1,5 +1,7 @@
 # Melodic Bridges
 
+[ Live Demo on Netlify](https://melodic-bridges.netlify.app/)
+
 ## Site Idea
 
 Melodic Bridges is a web application which focuses on instruments used in both Arabic and Hebrew songs. It aims to showcase these instruments and the songs they are featured in, promoting cultural understanding through music.
